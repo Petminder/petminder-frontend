@@ -94,7 +94,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header>
+    <header id="woof">
         <div class="header-content">
             <div class="header-content-inner">
                 <h1>DogMinder</h1>
@@ -105,7 +105,7 @@
         </div>
     </header>
 
-    <section class="bg-primary" id="about">
+    <section id="info" class="bg-primary" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -132,10 +132,15 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
+                        <h3>Dog Picture Upload Test</h3>
+                    <form id="dog-form">
+                        <label> Dog Pic
+                            <input type="file" id="dog-pic"/>
+                        </label>
+                        <button id="submit">Upload Picture</button>
+                    </form>
                 </div>
+            </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>

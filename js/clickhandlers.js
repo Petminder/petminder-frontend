@@ -1,4 +1,14 @@
+var authCreds = {
+  token: null,
+  id: null
+};
+
+var petCreds = {
+  petId: null,
+};
+
 $(document).ready(function() {
+
 
 var form2object = function(form) {
     var data = {};
@@ -39,12 +49,14 @@ var form2object = function(form) {
         callback(error);
         return;
       }
+      authCreds.token = data.user.token;
+      authCreds.id = data.user.id;
       callback(null, data);
-      $('.token').val(data.user.token);
-      $('.id').val(data.user.id);
     };
     e.preventDefault();
     petminder_api.login(credentials, cb);
+    $('#woof').hide();
+    $('#info').hide();
   });
 
   $('#logout').on('click', function(e) {
@@ -57,6 +69,31 @@ var form2object = function(form) {
       }
     };
     petminder_api.logout(token, id, cb);
+  });
+
+  $('#dog-form').on('submit', function(e){
+    e.preventDefault();
+    var reader = new FileReader();
+    reader.onload = function(event){
+      $.ajax({
+        url: 'http://localhost:3000/pets/' + '2',
+        method: 'PATCH',
+        data: { pet: {
+          dog_pic: event.target.result
+        }
+      }, headers: {
+          Authorization: 'Token token=' + authCreds.token
+        }
+
+      }).done(function(response){
+
+      }).fail(function(response){
+        console.error("Whoops!");
+      });
+    };
+
+    var $fileInput = $('#dog-pic');
+    reader.readAsDataURL($fileInput[0].files[0]);
   });
 
 //end Document Ready

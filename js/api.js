@@ -27,6 +27,7 @@ var petminder_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
+    console.log(credentials);
   },
 
   logout: function (token, id, callback) {
@@ -40,5 +41,16 @@ var petminder_api = {
       dataType: 'json'
     }, callback);
     console.log(" logout success");
-  }
+  },
+
+    get_pets: function (token, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.url + '/pets',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8'
+    }, callback);
+  },
 };
