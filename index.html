@@ -57,13 +57,13 @@
                         <form id="login" role="form" class="dropdown-menu" style="padding: 15px;">
                           <div class="form-group">
                             <label for="email">Email address:</label>
-                            <input name="username" type="email" class="form-control" id="login-email">
+                            <input name="email" type="text" placeholder="email">
                           </div>
                           <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input name="password" type="password" class="form-control" id="login-pwd">
+                             <input name="password" type="password" placeholder="password">
                           </div>
-                          <button type="submit" class="btn btn-primary">Login</button>
+                          <input name="login" type="submit" value="Login">
                         </form>
                     </li>
                     <li class="dropdown home-links">
@@ -71,17 +71,17 @@
                         <form id="register" role="form" class="dropdown-menu" style="padding: 15px;">
                           <div class="form-group">
                             <label for="email">Email address:</label>
-                            <input name="username" type="email" class="form-control" id="register-email">
+                             <input name="email" type="text" placeholder="email">
                           </div>
                           <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input name="password" type="password" class="form-control" id="register-pwd">
+                            <input name="password" type="password" placeholder="password">
                         </div>
                         <div class="form-group">
                             <label for="pwd-confirmation">Password Confirmation:</label>
-                            <input type="password" class="form-control" id="pwd-confirmation">
+                            <input name="password_confirmation" type="password" placeholder="password confirmation">
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                         <input name="register" type="submit" value="Register">
                         </form>
                     </li>
                     <li>
@@ -293,10 +293,16 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!--JavaScript API file-->
+    <script src="js/api.js"></script>
+
     <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/jquery.fittext.js"></script>
     <script src="js/wow.min.js"></script>
+
+    <!--JavaScript Click Handlers-->
+    <script src="js/clickhandlers.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
