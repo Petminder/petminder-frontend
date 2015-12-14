@@ -17,7 +17,6 @@ var petminder_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
-    console.log("register success");
   },
 
   login: function (credentials, callback) {
@@ -28,7 +27,6 @@ var petminder_api = {
       data: JSON.stringify(credentials),
       dataType: 'json'
     }, callback);
-    console.log("login success");
   },
 
   logout: function (token, id, callback) {

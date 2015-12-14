@@ -30,11 +30,9 @@ var form2object = function(form) {
     var credentials = wrap('credentials', form2object(this));
     petminder_api.register(credentials, callback);
     $('#register').hide();
-    console.log(data.user.token);
   });
 
-  $('#login').on('submit', function(e) {
-    e.preventDefault();
+ $('#log-in').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error) {
@@ -44,12 +42,12 @@ var form2object = function(form) {
       callback(null, data);
       $('.token').val(data.user.token);
       $('.id').val(data.user.id);
-      petminder_api.login(credentials, callback);
-      console.log(data.user.token);
     };
+    e.preventDefault();
+    petminder_api.login(credentials, cb);
   });
 
-  $('.logout').on('click', function(e) {
+  $('#logout').on('click', function(e) {
     var token = $('.token').val();
     var id = $('.id').val();
     var cb = function cb(error, data) {
