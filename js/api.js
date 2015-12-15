@@ -43,7 +43,7 @@ var petminder_api = {
     console.log(" logout success");
   },
 
-    get_pets: function (token, callback) {
+  get_pets: function (token, callback) {
     this.ajax({
       method: 'GET',
       url: this.url + '/pets',
@@ -53,4 +53,25 @@ var petminder_api = {
       contentType: 'application/json; charset=utf-8'
     }, callback);
   },
+
+  get_pet_pic: function (callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.url + '/pets/2'
+//      contentType: 'application/json; charset=utf-8'
+    }, callback);
+  },
+
+  add_pet: function (token, pet_info, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.url + '/pets',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: pet_info,
+      dataType: 'json'
+    }, callback);
+  }
+
 };

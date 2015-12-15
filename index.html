@@ -128,10 +128,18 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="column">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
+                        <form id="add-dog">
+                          <input name="name" type="text" placeholder="Doggy Name">
+                          <input name="dob" type="text" placeholder="Date Of Birth">
+                          <input name="last-rabies" type="text" placeholder="Last Rabies Shot">
+                          <input name="last-tick" type="text" placeholder="Last Tick and Flea Application">
+                          <input name="last-heartworm" type="text" placeholder="Last Heartworm Application">
+                          <input name="add-dog" type="submit" value="Add Your Dog">
+                      </form>
                         <h3>Dog Picture Upload Test</h3>
                     <form id="dog-form">
                         <label> Dog Pic
@@ -142,24 +150,30 @@
                 </div>
             </div>
                 <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
+                    <div id="dog-display" class="service-box">
                         <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
                         <h3>Ready to Ship</h3>
                         <p class="text-muted">You can use this theme as is, or you can make changes!</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+
+                <!-- <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                        <h3>Dog Picture</h3>
+
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
                         <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                         <form id="doc-form">
+                        <label> Important Dog Documents
+                            <input type="file" id="dog-doc"/>
+                        </label>
+                        <button id="submit">Upload File</button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -263,6 +277,12 @@
         </div>
     </section>
 
+    <script id="dog-picture-template" type="text/x-handlebars-template">
+    {{dog}}
+        <div>
+            <img src="https://s3.amazonaws.com/dogpic/pets/dog_pics/000/000/002/medium/{{dog_pic_file_name}}"
+        </div>
+    </script>
 <!--     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
@@ -297,6 +317,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/handlebars.js"></script>
 
     <!--JavaScript API file-->
     <script src="js/api.js"></script>
