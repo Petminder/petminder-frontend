@@ -25,12 +25,44 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
 
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Handlebars Templates -->
+    <script src="js/handlebars.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+        <!-- Handlebars Templates -->
+
+     <script id="dog-index-template" type="text/x-handlebars-template">
+      <table>
+         <thead>
+          <th>Dog Name</th>
+          <th>Last Rabies</th>
+          <th>Last Heartworm</th>
+          <th>Quantity</th>
+       </thead>
+
+       <tbody>
+         {{#each pets}})
+<tr>
+   <td>{{name}}</td>
+   <td>{{last_rabies}}</td>
+   <td>{{last_tick}}</td>
+   <td>{{last_heartworm}}</td>
+   <td><button id="change-dog" type="button" data-id={{id}}>Edit</button></td>
+   <td><button id="delete-dog" type="button" data-id={{id}}>Delete</button></td>
+</tr>
+{{/each}}
+</tbody>
+</tbody>
+</table>
+</script>
 
 </head>
 
@@ -145,41 +177,23 @@
                             </label>
                             <input name="add-dog" type="submit" value="Add Your Dog">
                       </form>
-
-<!--                     <form id="dog-form">
-                        <label> Dog Pic
-                            <input type="file" id="dog-pic"/>
-                        </label>
-                        <button id="submit">Upload Picture</button>
-                    </form> -->
-                </div>
+                 </div>
             </div>
+        </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div id="dog-display" class="service-box">
-                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
                     </div>
                 </div>
 
-                <!-- <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Dog Picture</h3>
-
-                    </div>
-                </div> -->
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Made with Love</h3>
-                         <form id="doc-form">
-                        <label> Important Dog Documents
-                            <input type="file" id="dog-doc"/>
-                        </label>
-                        <button id="submit">Upload File</button>
-                    </form>
+                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Dogs</h3>
+                        <input id="get-dogs" type="button" value="Get Dog List">
                     </div>
+                </div>
+                <div id="dogs" class="col-lg-3 col-md-6 text-center">
+                </div>
                 </div>
             </div>
         </div>
@@ -317,13 +331,9 @@
         </div>
     </section>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/handlebars.js"></script>
 
     <!--JavaScript API file-->
     <script src="js/api.js"></script>

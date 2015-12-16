@@ -9,6 +9,8 @@ var petCreds = {
 
 $(document).ready(function() {
 
+var dogIndexTemplate = Handlebars.compile($('#dogs').html());
+
 var form2object = function(form) {
   var data = {};
     $(form).find('input').each(function(index, element) {
@@ -68,8 +70,8 @@ var form2object = function(form) {
   });
 
   $('#logout').on('click', function(e) {
-    var token = $('.token').val();
-    var id = $('.id').val();
+    var token = authCreds.token;
+    var id = authCreds.id;
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
@@ -79,39 +81,50 @@ var form2object = function(form) {
     petminder_api.logout(token, id, cb);
   });
 
-  $('#add-dog').on('submit', function(e){
-     e.preventDefault();
-     token = authCreds.token;
+  $('#get-dogs').on('click', function(e){
+    var token = authCreds.token;
 
-     var new_dog = wrap('dog', form2object(this));
-     console.log("new_dog: ", new_dog);
-     petminder_api.add_pet(token, new_dog, function(err, data) {
+    petminder_api.get_pets(token, function(err, data) {
+      console.log(data);
       if (err) {
+        console.log(err);
         return;
       } else {
-        console.log("woo");
-      }
-    });
-  });
+        var templateTarget = $('#dog-index-template').html();
+        var template = Handlebars.compile(templateTarget);
+        var content = template(data);
+        $('#dogs').html(content);
 
-
+        // var template = Handlebars.compile($("#beer-index").html());
+        //   var newHTML = beerIndexTemplate({beers: data.beers});
+        // $('#beers').html(newHTML);
+  }
+});
+});
 // Paperclip focused clickhandlers with AJAX requests built in.  Couldn't seperate cleanly
-  $('#dog-form').on('submit', function(e){
+  $('#add-dog-form').on('submit', function(e){
     e.preventDefault();
+    token = authCreds.token;
     var reader = new FileReader();
+
+    var new_dog = form2object(this);
+    console.log("new_dog: ", new_dog);
+
     reader.onload = function(event){
+      new_dog.dog_pic = event.target.result;
+      console.log("new_dog with dog_pic:: ", new_dog);
+
       $.ajax({
-        url: 'http://localhost:3000/pets/' + '2',
-        method: 'PATCH',
-        data: { pet: {
-          dog_pic: event.target.result
-        }
+        url: 'http://localhost:3000/pets/',
+        method: 'POST',
+        data: { pet: new_dog
       }, headers: {
           Authorization: 'Token token=' + authCreds.token
         }
 
       }).done(function(response){
-
+        console.log("response: ", response)
+        console.log("F YEAH! SUCCESS!!!!")
       }).fail(function(response){
         console.error("Whoops!");
       });
@@ -140,18 +153,15 @@ var form2object = function(form) {
         console.error("Whoops!");
       });
     };
-debugger
+
     var $fileInput = $('#doc-form');
     reader.readAsDataURL($fileInput[0].files[0]);
   });
 
 var renderDisplayDogPage = function(dog) {
-  console.log("dog: ", dog);
   var templatingFunction = Handlebars.compile($('#dog-picture-template').html());
-  console.log("templatingFunction: ", templatingFunction);
 
   var html = templatingFunction(dog);
-  console.log("render template html: ", html);
   $("#dog-display").html(html);
 };
 
@@ -167,7 +177,6 @@ var petCb = function cb(error, data) {
 
   callback(null, data);
 };
-
 
 //end Document Ready
 });
