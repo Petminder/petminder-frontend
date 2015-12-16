@@ -61,13 +61,7 @@ var form2object = function(form) {
     petminder_api.login(credentials, cb);
     $('#woof').hide();
     $('#info').hide();
-
-    petminder_api.get_pet_pic(function() {
-      petCb.apply(this, arguments);
-      console.log("Dog: ", dogData);
-      renderDisplayDogPage(dogData);
     });
-  });
 
   $('#logout').on('click', function(e) {
     var token = authCreds.token;
@@ -96,13 +90,9 @@ var form2object = function(form) {
         var template = Handlebars.compile(templateTarget);
         var content = template(data);
         $('#dogs').html(content);
-
-        // var template = Handlebars.compile($("#beer-index").html());
-        //   var newHTML = beerIndexTemplate({beers: data.beers});
-        // $('#beers').html(newHTML);
-  }
-});
-});
+        }
+      });
+    });
 
   $(document).on("click", "#delete-dog", function(e) {
     e.preventDefault();
@@ -126,7 +116,7 @@ $(document).on("click", "#change-dog", function(e) {
     var petId = $(this).data("id");
     console.log(petId);
 
-    petminder_api.change_pet(token, petId, changed_pet, function(err, data) {
+    petminder_api.get_pet_info(token, petId, function(err, data) {
       if (err) {
         console.error(err);
         return;
@@ -192,12 +182,6 @@ $(document).on("click", "#change-dog", function(e) {
     reader.readAsDataURL($fileInput[0].files[0]);
   });
 
-var renderDisplayDogPage = function(dog) {
-  var templatingFunction = Handlebars.compile($('#dog-picture-template').html());
-
-  var html = templatingFunction(dog);
-  $("#dog-display").html(html);
-};
 
 var dogData;
 

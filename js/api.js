@@ -57,9 +57,16 @@ var petminder_api = {
   get_pet_pic: function (callback) {
     this.ajax({
       method: 'GET',
-      url: this.url + '/pets/2'
+      url: this.url + '/pets/'
 //      contentType: 'application/json; charset=utf-8'
     }, callback);
+  },
+
+  get_pet_info: function (token, petId, callback){
+    this.ajax({
+      method: 'GET',
+      utl: this.url + '/pets/' + petId
+    });
   },
 
   add_pet: function (token, pet_info, callback) {

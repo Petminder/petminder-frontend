@@ -39,29 +39,36 @@
 
         <!-- Handlebars Templates -->
 
-     <script id="dog-index-template" type="text/x-handlebars-template">
-      <table>
-         <thead>
-          <th>Dog Name</th>
-          <th>Last Rabies</th>
-          <th>Last Heartworm</th>
-          <th>Quantity</th>
-       </thead>
+<script id="dog-index-template" type="text/x-handlebars-template">
+    <table>
+        <thead>
+            <th>Dog Pic</th>
+            <th>Dog Name</th>
+            <th>Last Rabies</th>
+            <th>Last Heartworm</th>
+        </thead>
+        <tbody>
+           {{#each pets}})
+                <tr>
+                     <td><img src="https://s3.amazonaws.com/dogpic/pets/dog_pics/000/000/0{{id}}/thumb/{{dog_pic_file_name}}"</td>
+                     <td>{{name}}</td>
+                     <td>{{last_rabies}}</td>
+                     <td>{{last_tick}}</td>
+                     <td>{{last_heartworm}}</td>
+                     <td><button id="change-dog" type="button" data-id={{id}}>Edit</button></td>
+                     <td><button id="delete-dog" type="button" data-id={{id}}>Delete</button></td>
+                </tr>
+            {{/each}}
+          </tbody>
+                </tbody>
+                </table>
+</script>
 
-       <tbody>
-         {{#each pets}})
-<tr>
-   <td>{{name}}</td>
-   <td>{{last_rabies}}</td>
-   <td>{{last_tick}}</td>
-   <td>{{last_heartworm}}</td>
-   <td><button id="change-dog" type="button" data-id={{id}}>Edit</button></td>
-   <td><button id="delete-dog" type="button" data-id={{id}}>Delete</button></td>
-</tr>
-{{/each}}
-</tbody>
-</tbody>
-</table>
+<script id="dog-picture-template" type="text/x-handlebars-template">
+    {{pets}}
+    <div>
+        <img src="https://s3.amazonaws.com/dogpic/pets/dog_pics/000/000/0{{pets.id}}/medium/{{dog_pic_file_name}}"
+    </div>
 </script>
 
 </head>
@@ -296,12 +303,6 @@
         </div>
     </section>
 
-    <script id="dog-picture-template" type="text/x-handlebars-template">
-    {{dog}}
-        <div>
-            <img src="https://s3.amazonaws.com/dogpic/pets/dog_pics/000/000/002/medium/{{dog_pic_file_name}}"
-        </div>
-    </script>
 <!--     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
