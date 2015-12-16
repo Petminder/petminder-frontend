@@ -123,7 +123,7 @@ var form2object = function(form) {
 $(document).on("click", "#change-dog", function(e) {
     e.preventDefault();
     var token = authCreds.token;
-    var petId = $('#change-dog > input[name="pet-id"]').val();
+    var petId = $(this).data("id");
     console.log(petId);
 
     petminder_api.change_pet(token, petId, changed_pet, function(err, data) {
