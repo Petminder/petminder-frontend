@@ -81,6 +81,8 @@ var form2object = function(form) {
     petminder_api.logout(token, id, cb);
   });
 
+
+// Dog focused click handlers
   $('#get-dogs').on('click', function(e){
     var token = authCreds.token;
 
@@ -101,6 +103,38 @@ var form2object = function(form) {
   }
 });
 });
+
+  $(document).on("click", "#delete-dog", function(e) {
+    e.preventDefault();
+    var token = authCreds.token;
+    var petId = $(this).data("id");
+    console.log(petId);
+
+    petminder_api.delete_pet(token, petId, function(err, data) {
+      if (err) {
+        console.error(err);
+        return;
+      } else {
+        console.log(data);
+      }
+    });
+  });
+
+$(document).on("click", "#change-dog", function(e) {
+    e.preventDefault();
+    var token = authCreds.token;
+    var petId = $('#change-dog > input[name="pet-id"]').val();
+    console.log(petId);
+
+    petminder_api.change_pet(token, petId, changed_pet, function(err, data) {
+      if (err) {
+        console.error(err);
+        return;
+      } else {
+        console.log(data);
+      }
+    });
+  });
 // Paperclip focused clickhandlers with AJAX requests built in.  Couldn't seperate cleanly
   $('#add-dog-form').on('submit', function(e){
     e.preventDefault();
@@ -123,8 +157,8 @@ var form2object = function(form) {
         }
 
       }).done(function(response){
-        console.log("response: ", response)
-        console.log("F YEAH! SUCCESS!!!!")
+        console.log("response: ", response);
+        console.log("F YEAH! SUCCESS!!!!");
       }).fail(function(response){
         console.error("Whoops!");
       });

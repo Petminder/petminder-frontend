@@ -57,7 +57,7 @@ var petminder_api = {
   get_pet_pic: function (callback) {
     this.ajax({
       method: 'GET',
-      url: this.url + '/pets/'
+      url: this.url + '/pets/2'
 //      contentType: 'application/json; charset=utf-8'
     }, callback);
   },
@@ -84,6 +84,18 @@ var petminder_api = {
       data: JSON.stringify(petId),
       dataType: 'json'
     });
-  }
+  },
+
+  change_pet: function (token, petId, changed_pet , callback){
+    this.ajax({
+      method: 'PATCH',
+      url: this.url + '/pets/' + petId,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: JSON.stringify(petId),
+      dataType: 'json'
+    });
+  },
 
 };
