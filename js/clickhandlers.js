@@ -94,7 +94,7 @@ var form2object = function(form) {
       });
     });
 
-  $(document).on("click", "#delete-dog", function(e) {
+  $('#dogs').on("click", "button[data-type=delete]", function(e) {
     e.preventDefault();
     var token = authCreds.token;
     var petId = $(this).data("id");
@@ -110,13 +110,24 @@ var form2object = function(form) {
     });
   });
 
-$(document).on("click", "#change-dog", function(e) {
+  $('#dogs').on("click", 'button[data-type="edit"]', function(e) {
     e.preventDefault();
     var token = authCreds.token;
     var petId = $(this).data("id");
-    console.log(petId);
 
-    petminder_api.get_pet_info(token, petId, function(err, data) {
+    $(e.target).parent().parent().children().children(".doggy").hide();
+    $(e.target).parent().parent().children().children(".bosshoggy").show();
+  });
+
+  $('#dogs').on('click', 'button[data-type="commit"]', function(e){
+    e.preventDefault();
+    var token = authCreds.token;
+    var petId = $(this).data("id");
+
+    var diff_pet = form2object(this);
+    debugger;
+
+    petminder_api.change_pet(token, petId, diff_pet, function(e){
       if (err) {
         console.error(err);
         return;
@@ -125,6 +136,8 @@ $(document).on("click", "#change-dog", function(e) {
       }
     });
   });
+
+
 // Paperclip focused clickhandlers with AJAX requests built in.  Couldn't seperate cleanly
   $('#add-dog-form').on('submit', function(e){
     e.preventDefault();

@@ -93,7 +93,7 @@ var petminder_api = {
     });
   },
 
-  change_pet: function (token, petId, changed_pet , callback){
+  change_pet: function (token, petId, diff_pet , callback){
     this.ajax({
       method: 'PATCH',
       url: this.url + '/pets/' + petId,
