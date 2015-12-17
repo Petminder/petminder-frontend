@@ -9,6 +9,8 @@ var petCreds = {
 
 $(document).ready(function() {
 
+$('#services').hide();
+
 var dogIndexTemplate = Handlebars.compile($('#dogs').html());
 
 var form2object = function(form) {
@@ -61,6 +63,7 @@ var form2object = function(form) {
     petminder_api.login(credentials, cb);
     $('#woof').hide();
     $('#info').hide();
+    $('#services').show();
     });
 
   $('#logout').on('click', function(e) {
@@ -124,8 +127,19 @@ var form2object = function(form) {
     var token = authCreds.token;
     var petId = $(this).data("id");
 
-    var diff_pet = form2object(this);
-    debugger;
+    // username: $('[data-field=username data-id=' + profileid + ']').val(),
+
+    var diff_pet = {
+      pet: {
+      name: $('[data-field=name][data-id='+ petId +']').val(),
+      dob: $('[data-field=dob][data-id='+ petId +']').val(),
+      last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
+      last_tick: $('[data-field="last_tick"][data-id='+ petId +']').val(),
+      last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
+    }
+  };
+  console.log(diff_pet)
+  debugger;
 
     petminder_api.change_pet(token, petId, diff_pet, function(e){
       if (err) {

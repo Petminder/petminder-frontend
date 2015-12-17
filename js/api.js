@@ -58,14 +58,13 @@ var petminder_api = {
     this.ajax({
       method: 'GET',
       url: this.url + '/pets/'
-//      contentType: 'application/json; charset=utf-8'
     }, callback);
   },
 
   get_pet_info: function (token, petId, callback){
     this.ajax({
       method: 'GET',
-      utl: this.url + '/pets/' + petId
+      url: this.url + '/pets/' + petId
     });
   },
 
@@ -100,8 +99,8 @@ var petminder_api = {
       headers: {
         Authorization: 'Token token=' + token
       },
-      data: JSON.stringify(petId),
-      dataType: 'json'
+      data: JSON.stringify(diff_pet),
+      contentType: 'application/json; charset=utf-8'
     });
   },
 
