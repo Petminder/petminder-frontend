@@ -87,9 +87,8 @@ var petminder_api = {
       headers: {
         Authorization: 'Token token=' + token
       },
-      data: JSON.stringify(petId),
       dataType: 'json'
-    });
+    }, callback);
   },
 
   change_pet: function (token, petId, diff_pet , callback){
@@ -101,7 +100,7 @@ var petminder_api = {
       },
       data: JSON.stringify(diff_pet),
       contentType: 'application/json; charset=utf-8'
-    });
+    }, callback);
   },
 
 };

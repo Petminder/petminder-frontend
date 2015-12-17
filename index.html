@@ -45,26 +45,31 @@
 <script id="dog-index-template" type="text/x-handlebars-template">
     <table>
         <thead>
-            <th>Dog Pic</th>
+            <th></th>
             <th>Dog Name</th>
+            <th>Date of Birth</th>
             <th>Last Rabies</th>
+            <th>Last Tick and Flea</th>
             <th>Last Heartworm</th>
         </thead>
         <tbody>
            {{#each pets}})
                 <tr>
-                     <td><img src="https://s3.amazonaws.com/dogpic/pets/dog_pics/000/000/0{{id}}/thumb/{{dog_pic_file_name}}"</td>
+                     <td><img src="https://s3.amazonaws.com/dogpic/images/{{id}}/thumb/{{dog_pic_file_name}}"</td>
                      <td><span class ="doggy">{{name}}</span>
                      <input class="bosshoggy" type="text" value="{{name}}" data-id="{{id}}" data-field="name" /></td>
 
+                     <td><span class ="doggy">{{dob}}</span>
+                     <input class="bosshoggy" type="date" value="{{dob}}" data-id="{{id}}" data-field="dob" /></td>
+
                      <td><span class="doggy">{{last_rabies}}</span>
-                     <input class="bosshoggy" type="text" value="{{last_rabies}}" data-id="{{id}}" data-field="last_rabies" /></td>
+                     <input class="bosshoggy" type="date" value="{{last_rabies}}" data-id="{{id}}" data-field="last_rabies" /></td>
 
                      <td><span class="doggy">{{last_tick}}</span>
-                     <input class="bosshoggy" type="text" value="{{last_tick}}" data-id="{{id}}" data-field="last_tick" /></td>
+                     <input class="bosshoggy" type="date" value="{{last_tick}}" data-id="{{id}}" data-field="last_tick" /></td>
 
                      <td><span class="doggy">{{last_heartworm}}</span>
-                     <input class="bosshoggy" type="text" value="{{last_heartworm}}" data-id="{{id}}" data-field="last_heartworm" /></td>
+                     <input class="bosshoggy" type="date" value="{{last_heartworm}}" data-id="{{id}}" data-field="last_heartworm" /></td>
 
                      <td><button class="bosshoggy" type="button" data-type="commit" data-id={{id}}>OK</button></td>
                      <td><button class="bosshoggy" type="button" data-type="reset" data-id={{id}}>Cancel</button></td>
@@ -186,12 +191,12 @@
                         <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
                         <form id="add-dog-form">
                             <input name="name" type="text" placeholder="Doggy Name">
-                            <input name="dob" type="text" placeholder="Date Of Birth">
-                            <input name="last_rabies" type="text" placeholder="Last Rabies Shot">
-                            <input name="last_tick" type="text" placeholder="Last Tick and Flea Application">
-                            <input name="last_heartworm" type="text" placeholder="Last Heartworm Application">
-
-                            <h4>Dog Picture Upload Test</h4>
+                            <input name="dob" type="date" placeholder="Date Of Birth">
+                            <input name="last_rabies" type="date" placeholder="Last Rabies Shot">
+                            <input name="last_tick" type="date" placeholder="Last Tick and Flea Application">
+                            <input name="last_heartworm" type="date" placeholder="Last Heartworm Application">
+<!--  <input type="date" class="datepicker"> -->
+                            <h4>Dog Picture Upload</h4>
                             <label> Dog Pic
                                 <input type="file" id="dog-pic"/>
                             </label>
@@ -200,12 +205,8 @@
                  </div>
             </div>
         </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div id="dog-display" class="service-box">
-                    </div>
-                </div>
 
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-8 col-md-8 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
                         <h3>Dogs</h3>

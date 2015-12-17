@@ -108,10 +108,20 @@ var form2object = function(form) {
         console.error(err);
         return;
       } else {
-        console.log(data);
+        console.log("delete success");
+        $(e.target).parent().parent().hide();
       }
     });
   });
+
+  // var deleteCB = function(){
+  //   if (err) {
+  //       console.error(err);
+  //       return;
+  //     } else {
+  //       console.log("delete success");
+  //   $(e.target).parent().parent().children().children(".doggy").hide();
+  // };
 
   $('#dogs').on("click", 'button[data-type="edit"]', function(e) {
     e.preventDefault();
@@ -127,21 +137,17 @@ var form2object = function(form) {
     var token = authCreds.token;
     var petId = $(this).data("id");
 
-    // username: $('[data-field=username data-id=' + profileid + ']').val(),
-
     var diff_pet = {
       pet: {
       name: $('[data-field=name][data-id='+ petId +']').val(),
       dob: $('[data-field=dob][data-id='+ petId +']').val(),
       last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
       last_tick: $('[data-field="last_tick"][data-id='+ petId +']').val(),
-      last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
+      last_heartworm: $('[data-field=last_heartworm] [data-id='+ petId +']').val()
     }
   };
-  console.log(diff_pet)
-  debugger;
 
-    petminder_api.change_pet(token, petId, diff_pet, function(e){
+    petminder_api.change_pet(token, petId, diff_pet, function(err, data){
       if (err) {
         console.error(err);
         return;
