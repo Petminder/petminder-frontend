@@ -13,6 +13,8 @@ $('#services').hide();
 
 var dogIndexTemplate = Handlebars.compile($('#dogs').html());
 
+
+
 var form2object = function(form) {
   var data = {};
     $(form).find('input').each(function(index, element) {
@@ -53,17 +55,21 @@ var form2object = function(form) {
       if (error) {
         callback(error);
         return;
-      }
+      } else {
       authCreds.token = data.user.token;
       authCreds.id = data.user.id;
       callback(null, data);
-    };
+      getDogCb();
+    }
+  };
 
     e.preventDefault();
     petminder_api.login(credentials, cb);
     $('#woof').hide();
     $('#info').hide();
     $('#services').show();
+
+
     });
 
   $('#logout').on('click', function(e) {
@@ -93,6 +99,7 @@ var form2object = function(form) {
         var template = Handlebars.compile(templateTarget);
         var content = template(data);
         $('#dogs').html(content);
+        $(e.target).parent().parent().children().children().show();
         }
       });
     });
@@ -188,6 +195,8 @@ var form2object = function(form) {
     };
     var $fileInput = $('#dog-pic');
     reader.readAsDataURL($fileInput[0].files[0]);
+    debug
+    getDogCb();
   });
 
   $('#doc-form').on('submit', function(e){
@@ -215,6 +224,24 @@ var form2object = function(form) {
     reader.readAsDataURL($fileInput[0].files[0]);
   });
 
+// custom callbacks
+
+
+ var getDogCb = function(){
+  var token = authCreds.token;
+  petminder_api.get_pets(token, function(err, data) {
+      console.log(data);
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        var templateTarget = $('#dog-index-template').html();
+        var template = Handlebars.compile(templateTarget);
+        var content = template(data);
+        $('#dogs').html(content);
+        }
+    });
+};
 
 var dogData;
 
