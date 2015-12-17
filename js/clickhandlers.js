@@ -159,11 +159,14 @@ var form2object = function(form) {
         console.error(err);
         return;
       } else {
-        console.log(data);
+        getDogCb();
       }
     });
   });
 
+  $('#dogs').on("click", 'button[data-type="reset"]', function(e) {
+    getDogCb();
+});
 
 // Paperclip focused clickhandlers with AJAX requests built in.  Couldn't seperate cleanly
   $('#add-dog-form').on('submit', function(e){
@@ -189,13 +192,14 @@ var form2object = function(form) {
       }).done(function(response){
         console.log("response: ", response);
         console.log("F YEAH! SUCCESS!!!!");
+        getDogCb();
       }).fail(function(response){
         console.error("Whoops!");
       });
     };
     var $fileInput = $('#dog-pic');
     reader.readAsDataURL($fileInput[0].files[0]);
-    debug
+    debugger;
     getDogCb();
   });
 
