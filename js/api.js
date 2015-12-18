@@ -1,5 +1,5 @@
 var petminder_api = {
-  url: 'https://desolate-beach-8919.herokuapp.com/',
+  url: 'https://desolate-beach-8919.herokuapp.com',
 
   ajax: function (config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
