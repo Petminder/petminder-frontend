@@ -189,7 +189,7 @@ var form2object = function(form) {
       console.log("new_dog with dog_pic:: ", new_dog);
 
       $.ajax({
-        url: 'https://desolate-beach-8919.herokuapp.com/',
+        url: 'https://desolate-beach-8919.herokuapp.com/pets',
         method: 'POST',
         data: { pet: new_dog
       }, headers: {
