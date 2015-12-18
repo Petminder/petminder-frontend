@@ -206,7 +206,6 @@ var form2object = function(form) {
     };
     var $fileInput = $('#dog-pic');
     reader.readAsDataURL($fileInput[0].files[0]);
-    debugger;
     getDogCb();
   });
 
