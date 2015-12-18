@@ -1,7 +1,11 @@
 .bosshoggy {
   display: none;
 }
-
+#logout {
+  border-color: #ededed;
+    color: #222;
+    background-color: #f2f2f2;
+}
 #dogs {
   margin:0px;padding:0px;
   width:100%;

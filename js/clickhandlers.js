@@ -10,6 +10,7 @@ var petCreds = {
 $(document).ready(function() {
 
 $('#services').hide();
+$('#logout').hide();
 
 var dogIndexTemplate = Handlebars.compile($('#dogs').html());
 
@@ -69,8 +70,10 @@ var form2object = function(form) {
     $('#info').hide();
     $('#services').show();
 
+    $('#logout').show();
+    $('#register').hide();
 
-    });
+  });
 
   $('#logout').on('click', function(e) {
     var token = authCreds.token;
@@ -82,6 +85,10 @@ var form2object = function(form) {
       }
     };
     petminder_api.logout(token, id, cb);
+    $('#services').hide();
+    $('#woof').show();
+    $('#info').show();
+    $('#logout').hide();
   });
 
 
