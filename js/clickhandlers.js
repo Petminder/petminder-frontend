@@ -70,8 +70,9 @@ var form2object = function(form) {
     $('#info').hide();
     $('#services').show();
 
-    $('#logout').show();
-    $('#register').hide();
+    // $('#logout').show();
+    // $('#register').hide();
+    $('.form-gorup').hide();
 
   });
 
