@@ -11,6 +11,7 @@ $(document).ready(function() {
 
 $('#services').hide();
 $('#logout').hide();
+$('#error').hide();
 
 var dogIndexTemplate = Handlebars.compile($('#dogs').html());
 
@@ -46,9 +47,18 @@ var form2object = function(form) {
   $('#register').on('submit', function(e) {
     e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
-    petminder_api.register(credentials, callback);
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        $('#error').html("There Seems to Be an Error!");
+        $('#error').show();
+        return;
+      } else {
     $('#register').hide();
-  });
+  }
+};
+    petminder_api.register(credentials, callback);
+});
 
  $('#log-in').on('submit', function(e) {
     e.preventDefault();
@@ -56,6 +66,9 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
+        $('#error').html("There Seems to Be an Error!");
+        $('#error').show();
+        $('#error').delay(5000).fadeOut();
         return;
       } else {
       authCreds.token = data.user.token;
@@ -63,15 +76,12 @@ var form2object = function(form) {
       callback(null, data);
       getDogCb();
 
-    $('#woof').hide();
-    $('#info').hide();
-    $('#services').show();
+      $('#woof').hide();
+      $('#info').hide();
+      $('#services').show();
 
-    // $('#logout').show();
-    // $('#register').hide();
-    $('.form-gorup').hide();
-    $('.home-links').hide();
-    $('#logout').show();
+      $('.home-links').hide();
+      $('#logout').show();
     }
   };
    petminder_api.login(credentials, cb);
