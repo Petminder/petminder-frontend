@@ -51,6 +51,7 @@ var form2object = function(form) {
   });
 
  $('#log-in').on('submit', function(e) {
+    e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error) {
@@ -61,11 +62,7 @@ var form2object = function(form) {
       authCreds.id = data.user.id;
       callback(null, data);
       getDogCb();
-    }
-  };
 
-    e.preventDefault();
-    petminder_api.login(credentials, cb);
     $('#woof').hide();
     $('#info').hide();
     $('#services').show();
@@ -75,6 +72,9 @@ var form2object = function(form) {
     $('.form-gorup').hide();
     $('.home-links').hide();
     $('#logout').show();
+    }
+  };
+   petminder_api.login(credentials, cb);
 
   });
 
