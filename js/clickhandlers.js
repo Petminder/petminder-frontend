@@ -73,6 +73,8 @@ var form2object = function(form) {
     // $('#logout').show();
     // $('#register').hide();
     $('.form-gorup').hide();
+    $('.home-links').hide();
+    $('#logout').show();
 
   });
 
@@ -90,6 +92,7 @@ var form2object = function(form) {
     $('#woof').show();
     $('#info').show();
     $('#logout').hide();
+    $('.home-links').show();
   });
 
 
