@@ -66,7 +66,7 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
-        $('#error').html("There Seems to Be an Error!");
+        $('#error').html("Nice try pooch!  Next time let the humans handle logging in.");
         $('#error').show();
         $('#error').delay(5000).fadeOut();
         return;
@@ -170,11 +170,12 @@ var form2object = function(form) {
       name: $('[data-field=name][data-id='+ petId +']').val(),
       dob: $('[data-field=dob][data-id='+ petId +']').val(),
       last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
-      last_tick: $('[data-field="last_tick"][data-id='+ petId +']').val(),
-      last_heartworm: $('[data-field=last_heartworm] [data-id='+ petId +']').val()
+      last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
+      last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
     }
   };
-
+    console.log(diff_pet);
+    debugger;
     petminder_api.change_pet(token, petId, diff_pet, function(err, data){
       if (err) {
         console.error(err);
