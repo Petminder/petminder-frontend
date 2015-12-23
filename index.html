@@ -43,7 +43,7 @@
         <!-- Handlebars Templates -->
 
 <script id="dog-index-template" type="text/x-handlebars-template">
-    <table class="striped">
+    <table id="dog">
         <thead>
             <th></th>
             <th>Dog Name</th>
@@ -55,7 +55,7 @@
         <tbody>
            {{#each pets}}
                 <tr>
-                     <td><img src="https://s3.amazonaws.com/dogpic/images/{{id}}/medium/{{dog_pic_file_name}}"</td>
+                     <td><img src="https://s3.amazonaws.com/dogpic/images/{{id}}/thumb/{{dog_pic_file_name}}"</td>
                      <td><span class ="doggy">{{name}}</span>
                      <input class="bosshoggy" type="text" value="{{name}}" data-id="{{id}}" data-field="name" /></td>
 
@@ -81,6 +81,7 @@
                 </tbody>
                 </table>
 </script>
+
 
 </head>
 
@@ -178,15 +179,15 @@
         <div class="container">
             <div id="welcome" class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Welcome</h2>
+                    <h2 class="section-heading"></h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <div class="column">
-                <div class="col-lg-3 col-md-6 text-center">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
                         <form id="add-dog-form">
@@ -202,18 +203,47 @@
                             <input name="last_heartworm" type="date" placeholder="Last Heartworm Application">
 
                             <h4>Dog Picture Upload</h4>
-                                <input type="file" id="dog-pic"/>
+                            <input type="file" id="dog-pic"/>
                             <input name="add-dog" type="submit" value="Add Your Dog">
-                      </form>
-                 </div>
-            </div>
-        </div>
-                <div id="dogs" class="col-lg-3 col-md-6 text-center">
+                        </form>
+                    </div>
                 </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <div id="dogs">
+                        </div>
+                    </div>
+                </div>
+
+       <!--  <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
+                        <form id="add-dog-form">
+                            <p>Name</p>
+                            <input name="name" type="text" placeholder="Doggy Name">
+                            <p>Date of Birth</p>
+                            <input name="dob" type="date" placeholder="Date Of Birth">
+                            <p>Last Rabies Shot</p>
+                            <input name="last_rabies" type="date" placeholder="Last Rabies Shot">
+                            <p>Last Tick and Flea Application</p>
+                            <input name="last_tick" type="date" placeholder="Last Tick and Flea Application">
+                            <p>Last Heartworm Pill</p>
+                            <input name="last_heartworm" type="date" placeholder="Last Heartworm Application">
+
+                            <h4>Dog Picture Upload</h4>
+                            <input type="file" id="dog-pic"/>
+                            <input name="add-dog" type="submit" value="Add Your Dog">
+                        </form>
+                    </div>
+                </div>
+                <div id="dogs" class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-center">
                 </div>
             </div>
-        </div>
-    </section>
+        </div> -->
+</section>
 
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">

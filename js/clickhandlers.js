@@ -1,6 +1,7 @@
 var authCreds = {
   token: null,
-  id: null
+  id: null,
+  email: null
 };
 
 var petCreds = {
@@ -71,10 +72,12 @@ var form2object = function(form) {
         $('#error').delay(5000).fadeOut();
         return;
       } else {
+      authCreds.email = data.user.email;
       authCreds.token = data.user.token;
       authCreds.id = data.user.id;
       callback(null, data);
       getDogCb();
+      welcome();
 
       $('#woof').hide();
       $('#info').hide();
@@ -266,6 +269,10 @@ var form2object = function(form) {
         $('#dogs').html(content);
         }
     });
+};
+
+var welcome = function(){
+   $('#welcome').html("Welcome " + authCreds.email + "!");
 };
 
 var dogData;
