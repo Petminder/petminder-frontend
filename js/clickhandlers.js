@@ -45,20 +45,31 @@ var form2object = function(form) {
   };
 
 // User authentication click handlers
-  $('#register').on('submit', function(e) {
+  // $('#register').on('submit', function(e) {
+  //   e.preventDefault();
+  //   var credentials = wrap('credentials', form2object(this));
+  //   $('#register').hide();
+  //   $('#error').html("Thank you for registering, please log in!");
+  //   $('#error').delay(5000).fadeOut();
+  // }, petminder_api.register(credentials, callback)
+  // );
+
+ $('#register').on('submit', function(e) {
+  debugger;
     e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
+    petminder_api.register(credentials, callback);
     var cb = function cb(error, data) {
-      if (error) {
+      if (error){
         callback(error);
-        $('#error').html("There Seems to Be an Error!");
-        $('#error').show();
+        $('#register').hide();
+        $('#error').html("Thank you for registering, please log in!");
+        $('#error').delay(5000).fadeOut();
         return;
       } else {
-    $('#register').hide();
-  }
-};
-    petminder_api.register(credentials, callback);
+        return;
+      }
+ };
 });
 
  $('#log-in').on('submit', function(e) {
