@@ -179,27 +179,46 @@ var form2object = function(form) {
     var token = authCreds.token;
     var petId = $(this).data("id");
 
+    var reader = new FileReader();
+
     var diff_pet = {
-      pet: {
-      name: $('[data-field=name][data-id='+ petId +']').val(),
-      dob: $('[data-field=dob][data-id='+ petId +']').val(),
-      last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
-      last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
-      last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
+    pet: {
+    name: $('[data-field=name][data-id='+ petId +']').val(),
+    dob: $('[data-field=dob][data-id='+ petId +']').val(),
+    last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
+    last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
+    last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
     }
   };
-    console.log(diff_pet);
     debugger;
-    petminder_api.change_pet(token, petId, diff_pet, function(err, data){
-      if (err) {
-        console.error(err);
-        return;
-      } else {
-        getDogCb();
-      }
-    });
+        console.log("diff_pet: ", diff_pet);
+
+    reader.onload = function(event){
+      diff_pet.dog_doc = event.target.result;
+      console.log("dog_doc: ", diff_pet.dog_doc);
+      console.log("new_dog with dog_pic:: ", diff_pet);
+
+      $.ajax({
+        url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
+        method: 'PATCH',
+        data: { pet: diff_pet
+      }, headers: {
+          Authorization: 'Token token=' + authCreds.token
+        }
+
+      }).done(function(response){
+        console.log("F YEAH! SUCCESS!!!!");
+        $('#documents').html(diff_pet.dog_doc);
+      }).fail(function(response){
+        console.error("Whoops!");
+      });
+    };
+    var $fileInput = $('#dog-doc');
+    reader.readAsDataURL($fileInput[0].files[0]);
+    getDogCb();
   });
 
+// Allows user to cancel edit and return to list of dogs
   $('#dogs').on("click", 'button[data-type="reset"]', function(e) {
     getDogCb();
 });
@@ -238,30 +257,42 @@ var form2object = function(form) {
     getDogCb();
   });
 
-  $('#doc-form').on('submit', function(e){
+  $('#doggy-doc-form').on('submit', function(e){
     e.preventDefault();
+    token = authCreds.token;
+    var petId = $(this).data("id");
     var reader = new FileReader();
+
+    var diff_pet = form2object(this);
+    console.log("diff_pet: ", diff_pet);
+
+    debugger;
+
     reader.onload = function(event){
+      diff_pet.dog_doc = event.target.result;
+      console.log("dog_doc: ", dog_doc);
+      console.log("new_dog with dog_pic:: ", diff_pet);
+
       $.ajax({
-        url: 'http://localhost:3000/documents/',
-        method: 'POST',
-        data: { document: {
-          dog_pic: event.target.result
-        }
+        url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
+        method: 'PATCH',
+        data: { pet: diff_pet
       }, headers: {
           Authorization: 'Token token=' + authCreds.token
         }
 
       }).done(function(response){
-
+        console.log("F YEAH! SUCCESS!!!!");
+        getDogCb();
       }).fail(function(response){
         console.error("Whoops!");
       });
     };
-
-    var $fileInput = $('#doc-form');
+    var $fileInput = $('#dog-doc');
     reader.readAsDataURL($fileInput[0].files[0]);
+    getDogCb();
   });
+
 
 // custom callbacks
 
