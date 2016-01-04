@@ -181,22 +181,20 @@ var form2object = function(form) {
 
     var reader = new FileReader();
 
+    reader.onload = function(event){
+
     var diff_pet = {
     pet: {
     name: $('[data-field=name][data-id='+ petId +']').val(),
     dob: $('[data-field=dob][data-id='+ petId +']').val(),
     last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
     last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
-    last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
+    last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val(),
+    dog_doc: event.target.result
     }
   };
-    debugger;
-        console.log("diff_pet: ", diff_pet);
-
-    reader.onload = function(event){
-      diff_pet.dog_doc = event.target.result;
       console.log("dog_doc: ", diff_pet.dog_doc);
-      console.log("new_dog with dog_pic:: ", diff_pet);
+      console.log("diff_pet with dog_doc:: ", diff_pet);
 
       $.ajax({
         url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
@@ -207,8 +205,8 @@ var form2object = function(form) {
         }
 
       }).done(function(response){
-        console.log("F YEAH! SUCCESS!!!!");
-        $('#documents').html(diff_pet.dog_doc);
+        console.log("UPDATE!! SUCCESS!!!!");
+        $('#documents').html(diff_pet.dog_doc).toString();
       }).fail(function(response){
         console.error("Whoops!");
       });

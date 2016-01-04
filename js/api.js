@@ -18,7 +18,6 @@ var petminder_api = {
       dataType: 'json'
     }, callback);
     console.log(credentials);
-    debugger;
   },
 
   login: function (credentials, callback) {
@@ -100,7 +99,7 @@ var petminder_api = {
       headers: {
         Authorization: 'Token token=' + token
       },
-      data: JSON.stringify(diff_pet),
+      data: diff_pet,
       contentType: 'application/json; charset=utf-8'
     }, callback);
   },
