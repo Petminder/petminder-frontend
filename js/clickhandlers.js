@@ -78,7 +78,7 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
-        $('#error').html("Nice try pooch!  Next time let the humans handle logging in.");
+        $('#error').html("<h1>Nice try pooch!  Next time let the humans handle logging in.</h1>");
         $('#error').show();
         $('#error').delay(5000).fadeOut();
         return;
