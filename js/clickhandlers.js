@@ -193,8 +193,8 @@ var form2object = function(form) {
     dog_doc: event.target.result
     }
   };
-      console.log("dog_doc: ", diff_pet.dog_doc);
-      console.log("diff_pet with dog_doc:: ", diff_pet);
+      // console.log("dog_doc: ", diff_pet.dog_doc);
+      // console.log("diff_pet with dog_doc:: ", diff_pet);
 
       $.ajax({
         url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
@@ -205,7 +205,7 @@ var form2object = function(form) {
         }
 
       }).done(function(response){
-        console.log("UPDATE!! SUCCESS!!!!");
+        console.log(data);
         $('#documents').html(diff_pet.dog_doc).toString();
       }).fail(function(response){
         console.error("Whoops!");
