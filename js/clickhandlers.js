@@ -39,6 +39,10 @@ var form2object = function(form) {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' + error.error);
+      $('#error').html("<h1>Nice try pooch!  Next time let the humans handle registering.</h1>");
+      $('#error').show();
+      $('#error').delay(3000).fadeOut();
+      $('#register')[0].reset();
       return;
     }
     $('#result').val(JSON.stringify(data, null, 4));
@@ -59,18 +63,18 @@ var form2object = function(form) {
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error){
+        debugger;
         callback(error);
         return;
       } else {
-        debugger;
+       $('#register').hide();
+       $('#error').html("<h1>Thank you for registering, please log in!</h1>");
+       $('#error').show();
+       $('#error').delay(3000).fadeOut();
       }
- };
- petminder_api.register(credentials, callback);
- $('#register').hide();
- $('#error').html("<h1>Thank you for registering, please log in!</h1>");
- $('#error').show();
- $('#error').delay(3000).fadeOut();
-});
+    };
+      petminder_api.register(credentials, callback);
+  });
 
  $('#log-in').on('submit', function(e) {
     e.preventDefault();
