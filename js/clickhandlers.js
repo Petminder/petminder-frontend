@@ -55,20 +55,21 @@ var form2object = function(form) {
   // );
 
  $('#register').on('submit', function(e) {
-  debugger;
     e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
-    petminder_api.register(credentials, callback);
     var cb = function cb(error, data) {
       if (error){
         callback(error);
         return;
       } else {
-        $('#register').hide();
-        $('#error').html("Thank you for registering, please log in!");
-        $('#error').delay(5000).fadeOut();
+        debugger;
       }
  };
+ petminder_api.register(credentials, callback);
+ $('#register').hide();
+ $('#error').html("<h1>Thank you for registering, please log in!</h1>");
+ $('#error').show();
+ $('#error').delay(3000).fadeOut();
 });
 
  $('#log-in').on('submit', function(e) {
@@ -79,7 +80,7 @@ var form2object = function(form) {
         callback(error);
         $('#error').html("<h1>Nice try pooch!  Next time let the humans handle logging in.</h1>");
         $('#error').show();
-        $('#error').delay(5000).fadeOut();
+        $('#error').delay(4000).fadeOut();
         return;
       } else {
       authCreds.email = data.user.email;
