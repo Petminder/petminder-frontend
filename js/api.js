@@ -18,7 +18,6 @@ var petminder_api = {
       dataType: 'json'
     }, callback);
     console.log(credentials);
-    debugger;
   },
 
   login: function (credentials, callback) {

@@ -63,6 +63,7 @@ var form2object = function(form) {
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error){
+        debugger;
         callback(error);
         return;
       } else {

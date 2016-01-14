@@ -12,7 +12,7 @@
     <title>dogMinder - Keep Track of Your Dog's Health</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="vendors/css/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -20,18 +20,18 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="vendors/css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="vendors/css/creative.css" type="text/css">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css" type="text/css">
 
     <!-- JQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="vendors/js/jquery.js"></script>
     <!-- Handlebars Templates -->
-    <script src="js/handlebars.js"></script>
+    <script src="vendors/js/handlebars.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +52,7 @@
 
         <!-- Handlebars Templates -->
 
-<script id="dog-index-template" type="text/x-handlebars-template">
+<script id="dog-index-template" type="text/x-handlebars-template" style="overflow-x:auto;">
     <table id="dog">
         <thead>
             <th></th>
@@ -160,10 +160,10 @@
     </nav>
 
     <header id="woof">
-        <div id="error">
-        </div>
         <div class="header-content">
             <div class="header-content-inner">
+                <div id="error">
+                </div>
                 <h1>DogMinder</h1>
                 <hr>
                 <p>Keep Track of Your Dogs Health!</p>
@@ -218,7 +218,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-center">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
                         <div id="dogs">
@@ -236,10 +236,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Gracie
                                 </div>
                             </div>
                         </div>
@@ -251,10 +250,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert and Gracie
                                 </div>
                             </div>
                         </div>
@@ -266,10 +264,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert, Powder and Piper
                                 </div>
                             </div>
                         </div>
@@ -281,10 +278,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Smiling
                                 </div>
                             </div>
                         </div>
@@ -296,10 +292,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Hogging the Bed
                                 </div>
                             </div>
                         </div>
@@ -311,10 +306,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Helping me Program
                                 </div>
                             </div>
                         </div>
@@ -341,9 +335,10 @@
                     <hr class="primary">
                     <p>Questions?  Comments?  Want to expand what's being tracked?  Don't hesitate to let me know!</p>
                 </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-12 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
                     <p><a href="mailto:jcmeyer10@gmail">jcmeyer10@gmail.com</a></p>
+                    <p><a href="http://www.jeffthewebdev.com">Check out my Portfolio Here!</a>
                 </div>
             </div>
         </div>
@@ -351,21 +346,21 @@
 
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="vendors/js/bootstrap.min.js"></script>
 
     <!--JavaScript API file-->
     <script src="js/api.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="vendors/js/jquery.easing.min.js"></script>
+    <script src="vendors/js/jquery.fittext.js"></script>
+    <script src="vendors/js/wow.min.js"></script>
 
     <!--JavaScript Click Handlers-->
     <script src="js/clickhandlers.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/creative.js"></script>
+    <script src="/vendors/js/creative.js"></script>
 
 </body>
 
