@@ -62,12 +62,11 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error){
         callback(error);
+        return;
+      } else {
         $('#register').hide();
         $('#error').html("Thank you for registering, please log in!");
         $('#error').delay(5000).fadeOut();
-        return;
-      } else {
-        return;
       }
  };
 });
@@ -174,6 +173,8 @@ var form2object = function(form) {
     $(e.target).parent().parent().children().children(".bosshoggy").show();
   });
 
+
+// will allow documents to be attached to pets record on edit of dog NOT WORKING
   $('#dogs').on('click', 'button[data-type="commit"]', function(e){
     e.preventDefault();
     var token = authCreds.token;
@@ -238,30 +239,32 @@ var form2object = function(form) {
     getDogCb();
   });
 
-  $('#doc-form').on('submit', function(e){
-    e.preventDefault();
-    var reader = new FileReader();
-    reader.onload = function(event){
-      $.ajax({
-        url: 'http://localhost:3000/documents/',
-        method: 'POST',
-        data: { document: {
-          dog_pic: event.target.result
-        }
-      }, headers: {
-          Authorization: 'Token token=' + authCreds.token
-        }
+  // will allow documents to be added to a pets record seperate of updating dog NOT WORKING
 
-      }).done(function(response){
+  // $('#doc-form').on('submit', function(e){
+  //   e.preventDefault();
+  //   var reader = new FileReader();
+  //   reader.onload = function(event){
+  //     $.ajax({
+  //       url: 'http://localhost:3000/documents/',
+  //       method: 'POST',
+  //       data: { document: {
+  //         dog_pic: event.target.result
+  //       }
+  //     }, headers: {
+  //         Authorization: 'Token token=' + authCreds.token
+  //       }
 
-      }).fail(function(response){
-        console.error("Whoops!");
-      });
-    };
+  //     }).done(function(response){
 
-    var $fileInput = $('#doc-form');
-    reader.readAsDataURL($fileInput[0].files[0]);
-  });
+  //     }).fail(function(response){
+  //       console.error("Whoops!");
+  //     });
+  //   };
+
+  //   var $fileInput = $('#doc-form');
+  //   reader.readAsDataURL($fileInput[0].files[0]);
+  // });
 
 // custom callbacks
 
