@@ -199,7 +199,6 @@ var form2object = function(form) {
     dog_doc: event.target.result
     }
   };
-<<<<<<< HEAD
       console.log("dog_doc: ", diff_pet.dog_doc);
       console.log("diff_pet with dog_doc:: ", diff_pet);
 
@@ -221,7 +220,6 @@ var form2object = function(form) {
     var $fileInput = $('#dog-doc');
     reader.readAsDataURL($fileInput[0].files[0]);
     getDogCb();
-=======
     console.log(diff_pet);
     petminder_api.change_pet(token, petId, diff_pet, function(err, data){
       if (err) {
@@ -231,7 +229,6 @@ var form2object = function(form) {
         getDogCb();
       }
     });
->>>>>>> gh-pages
   });
 
 // Allows user to cancel edit and return to list of dogs
