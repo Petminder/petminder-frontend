@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>petMinder - Keep Track of Your Pets Health</title>
+    <title>dogMinder - Keep Track of Your Dog's Health</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -40,9 +40,19 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="shortcut icon"
+    href="favicon.ico"
+    type="image/x-icon" />
+
+    <meta property="og:image" content="img/portfolio/1.jpg"/>
+
+    <meta property="og:image:width" content="180" />
+
+    <meta property="og:image:height" content="110" />
+
         <!-- Handlebars Templates -->
 
-<script id="dog-index-template" type="text/x-handlebars-template">
+<script id="dog-index-template" type="text/x-handlebars-template" style="overflow-x:auto;">
     <table id="dog">
         <thead>
             <th></th>
@@ -111,11 +121,11 @@
                         <form id="log-in" role="form" class="dropdown-menu" style="padding: 15px;">
                           <div class="form-group">
                             <label for="email">Email address:</label>
-                            <input name="email" type="text" placeholder="email">
+                            <input name="email" type="email" placeholder="email" required>
                           </div>
                           <div class="form-group">
                             <label for="pwd">Password:</label>
-                             <input name="password" type="password" placeholder="password">
+                             <input name="password" type="password" placeholder="password" required>
                           </div>
                           <input name="login" type="submit" value="Login">
                         </form>
@@ -125,15 +135,15 @@
                         <form id="register" role="form" class="dropdown-menu" style="padding: 15px;">
                           <div class="form-group">
                             <label for="email">Email address:</label>
-                             <input name="email" type="text" placeholder="email">
+                             <input name="email" type="email" placeholder="email" required>
                           </div>
                           <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input name="password" type="password" placeholder="password">
+                            <input name="password" type="password" placeholder="password" required>
                         </div>
                         <div class="form-group">
                             <label for="pwd-confirmation">Password Confirmation:</label>
-                            <input name="password_confirmation" type="password" placeholder="password confirmation">
+                            <input name="password_confirmation" type="password" placeholder="password confirmation" required>
                         </div>
                          <input name="register" type="submit" value="Register">
                         </form>
@@ -152,10 +162,10 @@
     </nav>
 
     <header id="woof">
-        <div id="error">
-        </div>
         <div class="header-content">
             <div class="header-content-inner">
+                <div id="error">
+                </div>
                 <h1>DogMinder</h1>
                 <hr>
                 <p>Keep Track of Your Dogs Health!</p>
@@ -210,7 +220,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-center">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
                         <div id="dogs">
@@ -230,10 +240,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Gracie
                                 </div>
                             </div>
                         </div>
@@ -245,10 +254,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert and Gracie
                                 </div>
                             </div>
                         </div>
@@ -260,10 +268,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert, Powder and Piper
                                 </div>
                             </div>
                         </div>
@@ -275,10 +282,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Smiling
                                 </div>
                             </div>
                         </div>
@@ -290,10 +296,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Hogging the Bed
                                 </div>
                             </div>
                         </div>
@@ -305,10 +310,9 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+                                    Rupert Helping me Program
                                 </div>
                             </div>
                         </div>
@@ -335,13 +339,10 @@
                     <hr class="primary">
                     <p>Questions?  Comments?  Want to expand what's being tracked?  Don't hesitate to let me know!</p>
                 </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>123-456-6789</p>
-                </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-lg-12 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
                     <p><a href="mailto:jcmeyer10@gmail">jcmeyer10@gmail.com</a></p>
+                    <p><a href="http://www.jeffthewebdev.com">Check out my Portfolio Here!</a>
                 </div>
             </div>
         </div>

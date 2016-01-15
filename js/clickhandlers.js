@@ -39,6 +39,10 @@ var form2object = function(form) {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' + error.error);
+      $('#error').html("<h1>Nice try pooch!  Next time let the humans handle registering.</h1>");
+      $('#error').show();
+      $('#error').delay(3000).fadeOut();
+      $('#register')[0].reset();
       return;
     }
     $('#result').val(JSON.stringify(data, null, 4));
@@ -55,22 +59,22 @@ var form2object = function(form) {
   // );
 
  $('#register').on('submit', function(e) {
-  debugger;
     e.preventDefault();
     var credentials = wrap('credentials', form2object(this));
-    petminder_api.register(credentials, callback);
     var cb = function cb(error, data) {
       if (error){
+        debugger;
         callback(error);
-        $('#register').hide();
-        $('#error').html("Thank you for registering, please log in!");
-        $('#error').delay(5000).fadeOut();
         return;
       } else {
-        return;
+       $('#register').hide();
+       $('#error').html("<h1>Thank you for registering, please log in!</h1>");
+       $('#error').show();
+       $('#error').delay(3000).fadeOut();
       }
- };
-});
+    };
+      petminder_api.register(credentials, callback);
+  });
 
  $('#log-in').on('submit', function(e) {
     e.preventDefault();
@@ -78,9 +82,9 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
-        $('#error').html("Nice try pooch!  Next time let the humans handle logging in.");
+        $('#error').html("<h1>Nice try pooch!  Next time let the humans handle logging in.</h1>");
         $('#error').show();
-        $('#error').delay(5000).fadeOut();
+        $('#error').delay(4000).fadeOut();
         return;
       } else {
       authCreds.email = data.user.email;
@@ -174,6 +178,8 @@ var form2object = function(form) {
     $(e.target).parent().parent().children().children(".bosshoggy").show();
   });
 
+
+// will allow documents to be attached to pets record on edit of dog NOT WORKING
   $('#dogs').on('click', 'button[data-type="commit"]', function(e){
     e.preventDefault();
     var token = authCreds.token;
@@ -193,6 +199,7 @@ var form2object = function(form) {
     dog_doc: event.target.result
     }
   };
+<<<<<<< HEAD
       console.log("dog_doc: ", diff_pet.dog_doc);
       console.log("diff_pet with dog_doc:: ", diff_pet);
 
@@ -214,6 +221,17 @@ var form2object = function(form) {
     var $fileInput = $('#dog-doc');
     reader.readAsDataURL($fileInput[0].files[0]);
     getDogCb();
+=======
+    console.log(diff_pet);
+    petminder_api.change_pet(token, petId, diff_pet, function(err, data){
+      if (err) {
+        console.error(err);
+        return;
+      } else {
+        getDogCb();
+      }
+    });
+>>>>>>> gh-pages
   });
 
 // Allows user to cancel edit and return to list of dogs
@@ -255,6 +273,7 @@ var form2object = function(form) {
     getDogCb();
   });
 
+<<<<<<< HEAD
   $('#doggy-doc-form').on('submit', function(e){
     e.preventDefault();
     token = authCreds.token;
@@ -290,6 +309,34 @@ var form2object = function(form) {
     reader.readAsDataURL($fileInput[0].files[0]);
     getDogCb();
   });
+=======
+  // will allow documents to be added to a pets record seperate of updating dog NOT WORKING
+
+  // $('#doc-form').on('submit', function(e){
+  //   e.preventDefault();
+  //   var reader = new FileReader();
+  //   reader.onload = function(event){
+  //     $.ajax({
+  //       url: 'http://localhost:3000/documents/',
+  //       method: 'POST',
+  //       data: { document: {
+  //         dog_pic: event.target.result
+  //       }
+  //     }, headers: {
+  //         Authorization: 'Token token=' + authCreds.token
+  //       }
+
+  //     }).done(function(response){
+
+  //     }).fail(function(response){
+  //       console.error("Whoops!");
+  //     });
+  //   };
+
+  //   var $fileInput = $('#doc-form');
+  //   reader.readAsDataURL($fileInput[0].files[0]);
+  // });
+>>>>>>> gh-pages
 
 
 // custom callbacks
