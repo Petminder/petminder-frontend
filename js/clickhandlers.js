@@ -39,9 +39,11 @@ var form2object = function(form) {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' + error.error);
+      $(".header-content-inner").hide()
       $('#error').html("<h1>Nice try pooch!  Next time let the humans handle registering.</h1>");
       $('#error').show();
-      $('#error').delay(3000).fadeOut();
+      $('#error').delay(4500).fadeOut();
+      $(".header-content-inner").delay(5000).fadeIn();
       $('#register')[0].reset();
       return;
     }
@@ -67,10 +69,12 @@ var form2object = function(form) {
         callback(error);
         return;
       } else {
+       $(".header-content-inner").hide()
        $('#register').hide();
        $('#error').html("<h1>Thank you for registering, please log in!</h1>");
        $('#error').show();
-       $('#error').delay(3000).fadeOut();
+       $('#error').delay(4500).fadeOut();
+       $(".header-content-inner").delay(5000).fadeIn();
       }
     };
       petminder_api.register(credentials, callback);
@@ -82,9 +86,12 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
+        $("#log-in")[0].reset();
+        $(".header-content-inner").hide();
         $('#error').html("<h1>Nice try pooch!  Next time let the humans handle logging in.</h1>");
         $('#error').show();
-        $('#error').delay(4000).fadeOut();
+        $('#error').delay(4500).fadeOut();
+        $(".header-content-inner").delay(5000).fadeIn();
         return;
       } else {
       authCreds.email = data.user.email;
@@ -270,7 +277,6 @@ var form2object = function(form) {
     getDogCb();
   });
 
-<<<<<<< HEAD
   $('#doggy-doc-form').on('submit', function(e){
     e.preventDefault();
     token = authCreds.token;
@@ -306,7 +312,6 @@ var form2object = function(form) {
     reader.readAsDataURL($fileInput[0].files[0]);
     getDogCb();
   });
-=======
   // will allow documents to be added to a pets record seperate of updating dog NOT WORKING
 
   // $('#doc-form').on('submit', function(e){
@@ -333,7 +338,6 @@ var form2object = function(form) {
   //   var $fileInput = $('#doc-form');
   //   reader.readAsDataURL($fileInput[0].files[0]);
   // });
->>>>>>> gh-pages
 
 
 // custom callbacks
