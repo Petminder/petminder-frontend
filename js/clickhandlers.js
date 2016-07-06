@@ -1,3 +1,4 @@
+
 var authCreds = {
   token: null,
   id: null,
@@ -39,11 +40,9 @@ var form2object = function(form) {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' + error.error);
-      $(".header-content-inner").hide()
       $('#error').html("<h1>Nice try pooch!  Next time let the humans handle registering.</h1>");
       $('#error').show();
-      $('#error').delay(4500).fadeOut();
-      $(".header-content-inner").delay(5000).fadeIn();
+      $('#error').delay(3000).fadeOut();
       $('#register')[0].reset();
       return;
     }
@@ -69,12 +68,10 @@ var form2object = function(form) {
         callback(error);
         return;
       } else {
-       $(".header-content-inner").hide()
        $('#register').hide();
        $('#error').html("<h1>Thank you for registering, please log in!</h1>");
        $('#error').show();
-       $('#error').delay(4500).fadeOut();
-       $(".header-content-inner").delay(5000).fadeIn();
+       $('#error').delay(3000).fadeOut();
       }
     };
       petminder_api.register(credentials, callback);
@@ -86,12 +83,9 @@ var form2object = function(form) {
     var cb = function cb(error, data) {
       if (error) {
         callback(error);
-        $("#log-in")[0].reset();
-        $(".header-content-inner").hide();
         $('#error').html("<h1>Nice try pooch!  Next time let the humans handle logging in.</h1>");
         $('#error').show();
-        $('#error').delay(4500).fadeOut();
-        $(".header-content-inner").delay(5000).fadeIn();
+        $('#error').delay(4000).fadeOut();
         return;
       } else {
       authCreds.email = data.user.email;
@@ -192,41 +186,15 @@ var form2object = function(form) {
     var token = authCreds.token;
     var petId = $(this).data("id");
 
-    var reader = new FileReader();
-
-    reader.onload = function(event){
-
     var diff_pet = {
-    pet: {
-    name: $('[data-field=name][data-id='+ petId +']').val(),
-    dob: $('[data-field=dob][data-id='+ petId +']').val(),
-    last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
-    last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
-    last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val(),
-    dog_doc: event.target.result
+      pet: {
+      name: $('[data-field=name][data-id='+ petId +']').val(),
+      dob: $('[data-field=dob][data-id='+ petId +']').val(),
+      last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
+      last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
+      last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
     }
   };
-      console.log("dog_doc: ", diff_pet.dog_doc);
-      console.log("diff_pet with dog_doc:: ", diff_pet);
-
-      $.ajax({
-        url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
-        method: 'PATCH',
-        data: { pet: diff_pet
-      }, headers: {
-          Authorization: 'Token token=' + authCreds.token
-        }
-
-      }).done(function(response){
-        console.log("UPDATE!! SUCCESS!!!!");
-        $('#documents').html(diff_pet.dog_doc).toString();
-      }).fail(function(response){
-        console.error("Whoops!");
-      });
-    };
-    var $fileInput = $('#dog-doc');
-    reader.readAsDataURL($fileInput[0].files[0]);
-    getDogCb();
     console.log(diff_pet);
     petminder_api.change_pet(token, petId, diff_pet, function(err, data){
       if (err) {
@@ -238,7 +206,6 @@ var form2object = function(form) {
     });
   });
 
-// Allows user to cancel edit and return to list of dogs
   $('#dogs').on("click", 'button[data-type="reset"]', function(e) {
     getDogCb();
 });
@@ -277,41 +244,6 @@ var form2object = function(form) {
     getDogCb();
   });
 
-  $('#doggy-doc-form').on('submit', function(e){
-    e.preventDefault();
-    token = authCreds.token;
-    var petId = $(this).data("id");
-    var reader = new FileReader();
-
-    var diff_pet = form2object(this);
-    console.log("diff_pet: ", diff_pet);
-
-    debugger;
-
-    reader.onload = function(event){
-      diff_pet.dog_doc = event.target.result;
-      console.log("dog_doc: ", dog_doc);
-      console.log("new_dog with dog_pic:: ", diff_pet);
-
-      $.ajax({
-        url: 'https://desolate-beach-8919.herokuapp.com/pets/' + petId,
-        method: 'PATCH',
-        data: { pet: diff_pet
-      }, headers: {
-          Authorization: 'Token token=' + authCreds.token
-        }
-
-      }).done(function(response){
-        console.log("F YEAH! SUCCESS!!!!");
-        getDogCb();
-      }).fail(function(response){
-        console.error("Whoops!");
-      });
-    };
-    var $fileInput = $('#dog-doc');
-    reader.readAsDataURL($fileInput[0].files[0]);
-    getDogCb();
-  });
   // will allow documents to be added to a pets record seperate of updating dog NOT WORKING
 
   // $('#doc-form').on('submit', function(e){
@@ -338,7 +270,6 @@ var form2object = function(form) {
   //   var $fileInput = $('#doc-form');
   //   reader.readAsDataURL($fileInput[0].files[0]);
   // });
-
 
 // custom callbacks
 

@@ -100,6 +100,7 @@ var petminder_api = {
         Authorization: 'Token token=' + token
       },
       data: diff_pet,
+      dataType: 'json',
       contentType: 'application/json; charset=utf-8'
     }, callback);
   },
