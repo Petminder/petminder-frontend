@@ -187,13 +187,11 @@ var form2object = function(form) {
     var petId = $(this).data("id");
 
     var diff_pet = {
-      pet: {
       name: $('[data-field=name][data-id='+ petId +']').val(),
       dob: $('[data-field=dob][data-id='+ petId +']').val(),
       last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
       last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
       last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
-    }
   };
     console.log(diff_pet);
     petminder_api.change_pet(token, petId, diff_pet, function(err, data){
@@ -240,6 +238,7 @@ var form2object = function(form) {
       });
     };
     var $fileInput = $('#dog-pic');
+    clearForm();
     reader.readAsDataURL($fileInput[0].files[0]);
     getDogCb();
   });
@@ -271,8 +270,15 @@ var form2object = function(form) {
   //   reader.readAsDataURL($fileInput[0].files[0]);
   // });
 
-// custom callbacks
+// custom callbacks and helper functions
 
+  var clearForm = function(){
+    $('input[name="name"]').val('');
+    $('input[name="dob"]').val('');
+    $('input[name="last_rabies"]').val('');
+    $('input[name="last_tick"]').val('');
+    $('input[name="last_heartworm"]').val('');
+  };
 
  var getDogCb = function(){
   var token = authCreds.token;
@@ -290,10 +296,6 @@ var form2object = function(form) {
     });
 };
 
-var welcome = function(){
-   $('#welcome').html("Welcome " + authCreds.email + "!");
-};
-
 var dogData;
 
 var petCb = function cb(error, data) {
@@ -306,6 +308,12 @@ var petCb = function cb(error, data) {
 
   callback(null, data);
 };
+
+
+var welcome = function(){
+  var userName = 'authCreds.email'.split('@')[0];
+   $('#welcome').html("Welcome " + userName + "!");
+  };
 
 //end Document Ready
 });

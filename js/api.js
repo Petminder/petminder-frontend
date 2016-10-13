@@ -99,7 +99,7 @@ var petminder_api = {
       headers: {
         Authorization: 'Token token=' + token
       },
-      data: diff_pet,
+      data: JSON.stringify(diff_pet),
       dataType: 'json',
       contentType: 'application/json; charset=utf-8'
     }, callback);
