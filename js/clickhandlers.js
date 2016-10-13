@@ -187,11 +187,13 @@ var form2object = function(form) {
     var petId = $(this).data("id");
 
     var diff_pet = {
+      pet: {
       name: $('[data-field=name][data-id='+ petId +']').val(),
       dob: $('[data-field=dob][data-id='+ petId +']').val(),
       last_rabies: $('[data-field=last_rabies][data-id='+ petId +']').val(),
       last_tick: $('[data-field=last_tick][data-id='+ petId +']').val(),
       last_heartworm: $('[data-field=last_heartworm][data-id='+ petId +']').val()
+    }
   };
     console.log(diff_pet);
     petminder_api.change_pet(token, petId, diff_pet, function(err, data){
